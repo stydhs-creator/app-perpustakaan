@@ -2,35 +2,225 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title', 'Perpustakaan Digital Kampus')</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title', 'Perpustakaan Digital')</title>
+    
+    <!-- Font Modern Google (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        * { box-sizing: border-box; }
-        body { font-family: sans-serif; margin: 0; color: #1f2937; }
-        nav { background: #1e3a8a; padding: 14px 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; }
-        nav .brand { color: #fff; font-weight: bold; font-size: 18px; }
-        nav ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; }
-        nav ul li a { color: #cbd5e1; text-decoration: none; padding: 6px 4px; }
-        nav ul li a.active { color: #fff; font-weight: bold; border-bottom: 2px solid #fff; }
-        main { max-width: 900px; margin: 0 auto; padding: 30px 40px; }
-        table { border-collapse: collapse; width: 100%; margin-top: 16px; }
-        th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
-        .alert-success { background: #d1fae5; color: #065f46; padding: 10px 14px; border-radius: 4px; margin-bottom: 16px; }
-        .btn { display: inline-block; padding: 6px 14px; background: #2563eb; color: #fff; text-decoration: none; border-radius: 4px; border: none; cursor: pointer; }
-        form.inline { display: inline; }
-        footer { text-align: center; padding: 20px; color: #6b7280; font-size: 14px; border-top: 1px solid #e5e7eb; margin-top: 40px; }
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --danger: #ef4444;
+            --border-color: #e2e8f0;
+            --nav-bg: #0f172a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: var(--nav-bg);
+            padding: 0.875rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .brand {
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: -0.02em;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav ul li a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0.375rem 0;
+            transition: color 0.2s ease;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: #ffffff;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        /* Container Layout Card */
+        main {
+            max-width: 1000px;
+            width: 90%;
+            margin: 2.5rem auto;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
+            flex: 1;
+        }
+
+        /* Headings */
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin-bottom: 1rem;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.25rem;
+            font-size: 0.875rem;
+        }
+
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: #475569;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background-color: #f8fafc;
+        }
+
+        /* Buttons & Badges */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: 6px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.15s ease;
+            background-color: var(--primary);
+            color: #ffffff;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        form.inline {
+            display: inline;
+        }
+
+        button[type="submit"] {
+            background: none;
+            border: none;
+            color: var(--danger);
+            font-weight: 500;
+            cursor: pointer;
+            font-size: inherit;
+            font-family: inherit;
+        }
+
+        button[type="submit"]:hover {
+            text-decoration: underline;
+        }
+
+        /* Flash Message Alert */
+        .alert-success {
+            background-color: #f0fdf4;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.25rem;
+            font-size: 0.875rem;
+        }
+
+        /* Catatan Kaki Modal / Info */
+        p em {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            display: block;
+            margin-top: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.825rem;
+            border-top: 1px solid var(--border-color);
+            background-color: #ffffff;
+            margin-top: auto;
+        }
     </style>
 </head>
 <body>
+
     @include('partials.navbar')
 
     <main>
         @include('partials.alert')
-
         @yield('content')
     </main>
 
     <footer>
-        &copy; {{ date('Y') }} Sistem Perpustakaan Digital Kampus
+        &copy; 2026 Sistem Perpustakaan Digital Kampus
     </footer>
+
 </body>
 </html>
