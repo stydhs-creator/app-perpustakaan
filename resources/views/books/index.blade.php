@@ -17,7 +17,7 @@
                 <th>Penerbit</th>
                 <th>Tahun</th>
                 <th>Stok</th>
-                <th>ID Kategori</th>
+                <th>Kategori</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -28,16 +28,16 @@
                     <td>{{ $book->judul }}</td>
                     <td>{{ $book->penulis }}</td>
                     <td>{{ $book->penerbit }}</td>
-                    <td>{{ $book->tahun }}</td>
+                    <td>{{ $book->tahun_terbit }}</td>
                     <td>{{ $book->stok }}</td>
-                    <td>{{ $book->category_id }}</td>
+                    <td>{{ $book->category->nama_kategori ?? '-' }}</td>
                     <td>
                         <a href="{{ url('/books/' . $book->id) }}">Detail</a> |
-                        <a href="{{ url('/books/' . $book->id . '/edit') }}">Edit</a>
+                        <a href="{{ url('/books/' . $book->id . '/edit') }}">Edit</a> |
                         <form class="inline" action="{{ url('/books/' . $book->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">Hapus</button>
+                            <button type="submit" onclick="return confirm('Hapus buku ini?')">Hapus</button>
                         </form>
                     </td>
                 </tr>
@@ -49,5 +49,7 @@
         </tbody>
     </table>
 
-    <p><em>Catatan: kolom kategori masih menampilkan ID. Menampilkan nama kategori memerlukan Eloquent Relationship, dipelajari di Pertemuan 7.</em></p>
+    <div style="margin-top: 1.5rem;">
+        {{ $books->links() }}
+    </div>
 @endsection

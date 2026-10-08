@@ -1,58 +1,64 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Anggota</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; max-width: 500px; }
+        label { display: block; margin-top: 12px; font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 6px; margin-top: 4px; box-sizing: border-box; }
+        .error { color: #b91c1c; font-size: 14px; margin-top: 4px; }
+        .btn { margin-top: 20px; padding: 8px 16px; background: #2563eb; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Edit Anggota</h1>
+    <p><a href="{{ route('members.index') }}">&larr; Kembali ke daftar anggota</a></p>
 
-@section('title', 'Edit Anggota')
-
-@section('content')
-    <h1>Edit Data Anggota</h1>
-
-    @if ($errors->any())
-        <div class="alert-success" style="background-color: #fef2f2; color: #991b1b; border-color: #fecaca;">
-            <ul style="margin-left: 1.25rem;">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    <form action="{{ url('/members/' . $member->id) }}" method="POST">
+    <form action="{{ route('members.update', $member['id']) }}" method="POST">
         @csrf
         @method('PUT')
 
-        <div style="margin-bottom: 1rem;">
-            <label style="display: block; font-weight: 500;">Nama Lengkap:</label>
-            <input type="text" name="nama" value="{{ old('nama', $member->nama) }}" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
-        </div>
+        <label for="nama">Nama</label>
+        <input type="text" name="nama" id="nama" value="{{ old('nama', $member['nama']) }}">
+        @error('nama')
+            <div class="error">{{ $message }}</div>
+        @enderror
 
-        <div style="margin-bottom: 1rem;">
-            <label style="display: block; font-weight: 500;">NIM:</label>
-            <input type="text" name="nim" value="{{ old('nim', $member->nim) }}" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
-        </div>
+        <label for="nim">NIM</label>
+        <input type="text" name="nim" id="nim" value="{{ old('nim', $member['nim']) }}">
+        @error('nim')
+            <div class="error">{{ $message }}</div>
+        @enderror
 
-        <div style="margin-bottom: 1rem;">
-            <label style="display: block; font-weight: 500;">Email:</label>
-            <input type="email" name="email" value="{{ old('email', $member->email) }}" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
-        </div>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" value="{{ old('email', $member['email']) }}">
+        @error('email')
+            <div class="error">{{ $message }}</div>
+        @enderror
 
-        <div style="margin-bottom: 1rem;">
-            <label style="display: block; font-weight: 500;">Nomor Telepon:</label>
-            <input type="text" name="nomor_telepon" value="{{ old('nomor_telepon', $member->nomor_telepon) }}" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
-        </div>
+        <label for="nomor_telepon">Nomor Telepon</label>
+        <input type="text" name="nomor_telepon" id="nomor_telepon" value="{{ old('nomor_telepon', $member['nomor_telepon']) }}">
+        @error('nomor_telepon')
+            <div class="error">{{ $message }}</div>
+        @enderror
 
-        <div style="margin-bottom: 1rem;">
-            <label style="display: block; font-weight: 500;">Alamat:</label>
-            <textarea name="alamat" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; height: 80px;">{{ old('alamat', $member->alamat) }}</textarea>
-        </div>
+        <label for="alamat">Alamat</label>
+        <textarea name="alamat" id="alamat" rows="3">{{ old('alamat', $member['alamat']) }}</textarea>
+        @error('alamat')
+            <div class="error">{{ $message }}</div>
+        @enderror
 
-        <div style="margin-bottom: 1.5rem;">
-            <label style="display: block; font-weight: 500;">Status:</label>
-            <select name="status" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
-                <option value="aktif" {{ old('status', $member->status) == 'aktif' ? 'selected' : '' }}>Aktif</option>
-                <option value="nonaktif" {{ old('status', $member->status) == 'nonaktif' ? 'selected' : '' }}>Nonaktif</option>
-            </select>
-        </div>
+        <label for="status">Status</label>
+        <select name="status" id="status">
+            <option value="aktif" @selected(old('status', $member['status']) == 'aktif')>Aktif</option>
+            <option value="nonaktif" @selected(old('status', $member['status']) == 'nonaktif')>Nonaktif</option>
+        </select>
+        @error('status')
+            <div class="error">{{ $message }}</div>
+        @enderror
 
         <button type="submit" class="btn">Perbarui</button>
-        <a href="{{ url('/members') }}" class="btn" style="background-color: #64748b;">Batal</a>
     </form>
-@endsection
+</body>
+</html>
