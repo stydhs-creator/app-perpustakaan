@@ -9,8 +9,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Book extends Model
 {
     protected $fillable = [
-        'judul', 'penulis', 'penerbit', 'tahun_terbit',
-        'isbn', 'stok', 'category_id', 'sampul',
+        'judul', 
+        'penulis', 
+        'penerbit', 
+        'tahun_terbit',
+        'isbn', 
+        'stok', 
+        'category_id', 
+        'sampul',
     ];
     public function category(): BelongsTo
     {

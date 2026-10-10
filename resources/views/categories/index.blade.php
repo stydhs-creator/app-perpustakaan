@@ -5,7 +5,7 @@
 @section('content')
     <h1>Daftar Kategori</h1>
     <p style="margin-bottom: 1rem;">
-        <a href="{{ url('/categories/create') }}" class="btn">+ Tambah Kategori</a>
+        <a href="{{ route('categories.create') }}" class="btn">+ Tambah Kategori</a>
     </p>
 
     <table>
@@ -20,14 +20,15 @@
             @forelse ($categories as $category)
                 <tr>
                     <td>{{ $category->id }}</td>
-                    <td>{{ $category->nama }}</td>
+                    <td>{{ $category->nama_kategori }}</td>
                     <td>
-                        <a href="{{ url('/categories/' . $category->id) }}">Detail</a> |
-                        <a href="{{ url('/categories/' . $category->id . '/edit') }}">Edit</a>
-                        <form class="inline" action="{{ url('/categories/' . $category->id) }}" method="POST">
+                        <a href="{{ route('categories.edit', $category->id) }}">Edit</a> |
+                        <form class="inline" action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">Hapus</button>
+                            <button type="submit" onclick="return confirm('Yakin ingin menghapus kategori ini?')" style="background: none; border: none; color: #dc2626; cursor: pointer; text-decoration: underline; padding: 0;">
+                                Hapus
+                            </button>
                         </form>
                     </td>
                 </tr>

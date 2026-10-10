@@ -11,36 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-    .badge {
-        display: inline-block;
-        padding: 0.25rem 0.6rem;
-        font-size: 0.85rem;
-        font-weight: 600;
-        line-height: 1;
-        text-align: center;
-        white-space: nowrap;
-        vertical-align: baseline;
-        border-radius: 4px;
-    }
-
-    .badge-success {
-        background-color: #d1e7dd;
-        color: #0f5132;
-        border: 1px solid #badbcc;
-    }
-
-    .badge-warning {
-        background-color: #fff3cd;
-        color: #664d03;
-        border: 1px solid #ffecb5;
-    }
-
-    .badge-danger {
-        background-color: #f8d7da;
-        color: #842029;
-        border: 1px solid #f5c2c7;
-    }
-
         :root {
             --bg-color: #f8fafc;
             --card-bg: #ffffff;
@@ -89,6 +59,7 @@
         nav ul {
             list-style: none;
             display: flex;
+            align-items: center;
             gap: 1.5rem;
         }
 
@@ -105,6 +76,60 @@
         nav ul li a.active {
             color: #ffffff;
             border-bottom: 2px solid var(--primary);
+        }
+
+        nav .navbar-user { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            color: #cbd5e1; 
+            font-size: 14px; 
+        }
+
+        nav .btn-logout { 
+            background: none; 
+            border: 1px solid #cbd5e1; 
+            color: #cbd5e1; 
+            padding: 4px 10px; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            font-size: 14px; 
+        }
+
+        nav .btn-logout:hover { 
+            background: #1e40af; 
+            color: #fff; 
+        }
+
+        /* Badge Status */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: 4px;
+        }
+
+        .badge-success {
+            background-color: #d1e7dd;
+            color: #0f5132;
+            border: 1px solid #badbcc;
+        }
+
+        .badge-warning {
+            background-color: #fff3cd;
+            color: #664d03;
+            border: 1px solid #ffecb5;
+        }
+
+        .badge-danger {
+            background-color: #f8d7da;
+            color: #842029;
+            border: 1px solid #f5c2c7;
         }
 
         /* Container Layout Card */
@@ -126,6 +151,12 @@
             font-weight: 700;
             letter-spacing: -0.025em;
             margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
         }
 
         /* Tables */
@@ -159,7 +190,7 @@
             background-color: #f8fafc;
         }
 
-        /* Buttons & Badges */
+        /* Buttons & Links */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -194,7 +225,7 @@
             display: inline;
         }
 
-        button[type="submit"] {
+        button[type="submit"]:not(.btn) {
             background: none;
             border: none;
             color: var(--danger);
@@ -204,7 +235,7 @@
             font-family: inherit;
         }
 
-        button[type="submit"]:hover {
+        button[type="submit"]:not(.btn):hover {
             text-decoration: underline;
         }
 
